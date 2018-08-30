@@ -7,23 +7,48 @@ public class MLE {
         double[] x=new double[testLenght];
         double[] y=new double[testLenght];
 
-        x[0]=31;
-        x[1]=12;
-        x[2]=.8;
+        x[0]=1;
+        x[1]=2;
+        x[2]=3;
 
-        y[0]=85;
-        y[1]=-.000001;
-        y[2]=0;
+        y[0]=2;
+        y[1]=6;
+        y[2]=3;
 
 
-        System.out.println(cosineSimilarity(x,y));
+
+        System.out.println(euclideanDistance(x,y));
 
 
     }
 
 
+    public static int hammingDistnce(String binaryOne,String binaryTwo){
+        if(binaryOne.length()!=binaryTwo.length()){
+            System.out.println("Inputs ar not equal length");
+            return -1;
+        }
+        int hammingDistnace=0;
+
+        for(int i=0; i<binaryOne.length();i++){
+            if(binaryOne.charAt(i)!=binaryTwo.charAt(i)){
+                hammingDistnace=hammingDistnace+1;
+            }
+
+        }
+
+        return hammingDistnace;
+
+
+
+
+
+
+
+    }
+
     public static double cosineSimilarity(double []intputVecorA,double []intputVecorB){
-        int presition=100000;
+        int presition=10000000;
         double tempDot=dotProuduct(intputVecorA,intputVecorB);
         double denometor = vecotorMagnitude(intputVecorA)*vecotorMagnitude(intputVecorB);
 
@@ -34,6 +59,25 @@ public class MLE {
         return similarity/presition;
 
 
+    }
+
+    public static double euclideanDistance(double []intputVecorA,double []intputVecorB){
+
+        double toBeSqrt=0;
+        double prescition=1000000;
+        double euclideanDis=0;
+
+        for(int i =0;i<intputVecorA.length;i++){
+
+            double tempDiff= intputVecorA[i]-intputVecorB[i];
+
+            toBeSqrt=toBeSqrt+(tempDiff*tempDiff);
+        }
+
+        euclideanDis=(int)(prescition*Math.sqrt(toBeSqrt));
+
+
+        return euclideanDis/prescition;
     }
 
     public static double vecotorMagnitude(double []inputVector){
